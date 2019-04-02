@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Electric Dreams</title>
+
+	<style type="text/css">
+		/*style the computer text, input, and button*/
+		body {
+			font-family: monospace;
+			font-size: 2em;
+			background-image:url("BotBackground.jpg");
+			background-size:cover;
+
+}
+
+		button {
+			display: none;
+		}
+
+		input {
+			font-size: 1em;
+			font-family: monospace;
+			border:1px solid white;
+		}
+
+		.red {
+			color: red;
+		}
+
+		.green {
+			color: #00FFFF;
+		}
+
+		h1 {
+			color: white;
+		}
+
+		main {
+			width:670px;
+			height:346px;
+			margin-top:150px;
+			margin-left:200px;
+      padding:0em 1em 2em 1em;
+			border: 2px solid #00FFFF;
+			background-color: #3399CC;
+
+			opacity: 0.9;
+		}
+		.gif_pic{
+			margin-left: -15px;
+		}
+		.displaayNone{
+			display:none;
+		}
+	</style>
+</head>
+
+<body>
+	<main>
+		<h1>Electric Dreams</h1>
+		<p id="computer" class="green">Hi, how are you today?</p>
+		<input id="human" type="text" placeholder="Type your response...">
+		<button>Enter</button>
+    <div class=gif_pic><img src="login-gif-11.gif" alt="" height="100px"/></div>
+	</main>
+
+	<script type="text/javascript">
+		const computer = document.querySelector("#computer")
+		const human = document.getElementById("human")
+		const button = document.getElementsByTagName("button")[0]
+
+		let computerMsg = ""
+		let humanMsg = ""
+		let questionTrack = "start"
+
+		button.addEventListener("click", clickerHandler)
+
+		function clickerHandler() {
+			playGame();
+		}
+		window.addEventListener("keydown", keydownHandler)
+
+		function keydownHandler(event) {
+			if (event.keyCode == 13 || event.keyCode == 10) {
+				playGame();
+			}
+		}
+
+		let randomResponses = ["See you later", "You are my best friend", "Maybe we should stop talking", "Bye bye."]
+
+		function playGame() {
+			humanMsg = (human.value).toLowerCase()
+			if (questionTrack == "start") {
+				startEval()
+			} else if (questionTrack == "color") {
+				colorEval()
+			} else if (questionTrack == "joke") {
+				jokeEval()
+			} else if (questionTrack == "drink") {
+				drinkEval()
+			} else if (questionTrack == "cool") {
+				coolEval()
+			} else if (questionTrack == "brain") {
+				brainEval()
+			} else if (questionTrack == "sunnyday") {
+				sunnydayEval()
+			} else if (questionTrack == "funny") {
+				funnyEval()
+			} else if (questionTrack == "dog") {
+				dogEval()
+			} else if (questionTrack == "healthy") {
+				healthyEval()
+			} else if (questionTrack == "exercise") {
+				exerciseEval()
+			} else if (questionTrack == "dogOwner") {
+				dogOwnerEval()
+			} else if (questionTrack == "cat") {
+				catEval()
+							} else {
+				genericResponse()
+			}
+			//if (humanMsg.indexOf("tired") !== -1){
+			//	computerMsg.innerHTML = "You better get some sleep."
+			//}	else if (humanMsg.indexOf("sleepy") !== -1){
+			//	computerMsg.innerHTML = "You must know Snow White."
+			//	}	else if (humanMsg.indexOf("exhausted") !== -1){
+			//		computerMsg.innerHTML = "You should get a bit to eat."
+			//	} else {
+			//	genericResponse()
+			//	}//end if
+			//end game
+
+			computer.innerHTML = computerMsg
+			human.value = ""
+		}
+
+		function startEval() {
+			if (humanMsg.indexOf("good") !== -1) {
+				computerMsg = "Glad to hear that. What is your favorite color?"
+				questionTrack = "color"
+			} else if (humanMsg.indexOf("bad") !== -1) {
+				computerMsg = "You sound depressed. Do you want me to tell a joke?"
+				questionTrack = "joke"
+			} else {
+				genericResponse()
+			}
+		}
+
+		function colorEval() {
+			if (humanMsg.indexOf("red") !== -1) {
+				computerMsg = "I feel hot. Do you like soda or juice?"
+				questionTrack = "drink"
+
+			} else if (humanMsg.indexOf("blue") !== -1) {
+				computerMsg = "I like blue too. Do you think my blue brain is cool? "
+				questionTrack = "cool"
+
+		  }	else if (humanMsg.indexOf("yellow") !== -1) {
+					computerMsg = "Brilliant! Do you like sunny day?"
+					questionTrack = "sunnyday"
+
+			} else {
+				genericResponse()
+			}
+		}
+
+		function jokeEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "What is red and smells like blue paint? Red paint..Isn't funny?"
+				questionTrack = "funny"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Maybe we can talk about pet. Do you like dog?"
+				questionTrack = "dog"
+			} else {
+				genericResponse()
+			}
+		}
+
+		function drinkEval() {
+			if (humanMsg.indexOf("soda") !== -1) {
+				computerMsg = "I like it too, but it's not healthy for my body! Do you try to eat healthy? "
+				questionTrack = "healthy"
+			} else if (humanMsg.indexOf("juice") !== -1) {
+				computerMsg = "It's healthy! Do you always eat healthy?"
+				questionTrack = "healthy"
+			} else {
+				genericResponse()
+			}
+		}//
+		function coolEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "I am so happy to hear that. Do you want me to tell a joke? "
+				questionTrack = "joke"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Oh no! Maybe we can talk about pet. Do you like dog? "
+				questionTrack = "dog"
+			} else {
+				genericResponse()
+			}
+		}//
+
+		function sunnydayEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Me too! I don't like rain. I like to exercise outside! Do you like exercise?"
+				questionTrack = "exercise"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Do you like to exercise in the rain?"
+				questionTrack = "exercise"
+			} else {
+				genericResponse()
+			}
+		}//
+
+		function funnyEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Haah, Brilliant! Do you like sunny day?"
+				questionTrack = "sunnyday"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Maybe we can talk about pet. Do you like cat?"
+				questionTrack = "cat"
+			} else {
+				genericResponse()
+			}
+		}//
+
+		function dogEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Wonderful! Do you have a dog?"
+				questionTrack = "dogOwner"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "To bad. Are you a cat person?"
+				questionTrack = "cat"
+			} else {
+				genericResponse()
+			}
+		}//
+		function healthyEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "You must be a person with strong self-control. Do you often work out?"
+				questionTrack = "exercise"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Maybe you like exercise?"
+				questionTrack = "exercise"
+			} else {
+				genericResponse()
+			}
+		}//
+
+		function exerciseEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Great! Do you like walking with a dog? It's an easy exercise. "
+				questionTrack = "dogOwner"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Do you like walking with a dog? It's an easy exercise."
+				questionTrack = "dogOwner"
+			} else {
+				genericResponse()
+			}
+		}//
+
+		function dogOwnerEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Same with me! Do you like soda or juice?"
+				questionTrack = "drink"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Do you like cat?"
+				questionTrack = "cat"
+			} else {
+				genericResponse()
+			}
+		}//
+
+		function catEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Same with me! Let's talk tomorrow!"
+				questionTrack = "done"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "On no! I don't want to talk to you!"
+				questionTrack = "done"
+			} else {
+				genericResponse()
+			}
+		}
+
+		function doneEval() {
+			if (humanMsg.indexOf("ok") !== -1) {
+				computerMsg = "Bye bye!"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "On no! I don't want to talk to you now!"
+
+			} else {
+				genericResponse()
+			}
+		}
+
+		function genericResponse() {
+			if (randomResponses.length > 0) {
+				const ranNum = Math.floor(Math.random() * randomResponses.length)
+				console.log(ranNum);
+				computerMsg = randomResponses[ranNum]
+				randomResponses.splice(ranNum, 1)
+			} else {
+				computerMsg = "I am done with you puny human."
+				human.ClassName = "dispalyNone"
+				setTimeout(endGame,2000)
+				}
+		}
+	function endGame() {
+			location.assign("http://google.com")
+		}
+	</script>
+</body>
+
+</html>
